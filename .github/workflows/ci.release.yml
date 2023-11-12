@@ -1,0 +1,37 @@
+name: "Release pipeline"
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  version:
+    name: Get version number from tag
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
+    steps:
+      - name: Read version
+        id: vars
+        # extract tag name without v prefix
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        shell: bash
+
+  release-build:
+    runs-on: ubuntu-22.04
+    needs: version
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3.4.0
+      - name: Set up JDKs
+        uses: actions/setup-java@v3.11.0
+        with:
+          distribution: temurin
+          java-version: 8
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v2.4.2
+      - run: "./gradlew :publishPlugin -PpluginVersion=${{ needs.version.outputs.version }}"
+        env:
+          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}

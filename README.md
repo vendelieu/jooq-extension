@@ -1,0 +1,1 @@
+Jooq plugin that provides generator for expanding generated dao.

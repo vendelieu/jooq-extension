@@ -1,0 +1,28 @@
+name: "PR Pipeline"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  gradle-build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-12, windows-2022, ubuntu-22.04]
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3.4.0
+      - name: Set up JDKs
+        uses: actions/setup-java@v3.11.0
+        with:
+          distribution: temurin
+          java-version: |
+            11
+            17
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v2.4.2
+      - run: "./gradlew :check --continue"

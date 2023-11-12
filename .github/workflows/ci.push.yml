@@ -1,0 +1,26 @@
+name: "Push Pipeline"
+
+on:
+  push:
+    branches:
+      - "*"
+      - "*/*"
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  gradle-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3.4.0
+      - name: Set up JDKs
+        uses: actions/setup-java@v3.11.0
+        with:
+          distribution: temurin
+          java-version: |
+            8
+            11
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v2.4.2
+      - run: "./gradlew :test"
