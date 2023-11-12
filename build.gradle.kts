@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "eu.vendeli"
-version = "0.0.1"
+version = providers.gradleProperty("pluginVersion").getOrElse("dev")
 
 gradlePlugin {
     website.set("https://vendeli.eu")
