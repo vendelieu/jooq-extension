@@ -21,12 +21,13 @@ jobs:
   readme:
     name: Replace version in README.md
     runs-on: ubuntu-22.04
-    permissions: write-all
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "*.*.*"
+          find: "\d\.\d\.\d"
           replace: "${{ needs.version.outputs.version }}"
           regex: true
           include: "./README.md"
