@@ -16,6 +16,7 @@ abstract class DAOExtendedImpl<Record : UpdatableRecord<Record>, Pojo, Id> prote
     private fun <T : Record> mapRecord(block: () -> Record?): Pojo? = mapper().map(block())
 
     fun getOne(block: () -> Condition): Pojo? = mapRecord { dslContext.fetchOne(table, block()) }
+    fun getSingle(block: () -> Condition): Pojo = mapRecord { dslContext.fetchSingle(table, block()) }!!
     fun getAll(block: () -> Condition): List<Pojo> = dslContext.fetch(table, block()).map { mapRecord { it } }
 
     fun create(block: Pojo.() -> Unit): Pojo {
