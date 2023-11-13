@@ -38,13 +38,13 @@ fun getAllUserDocuments(userId: Long) = getAll {
     DOCUMENT.USER_ID.eq(userId)
 }
 
-fun create(uuid: String): User = create { this.uuid = uuid.toUuid() }
+fun create(uuid: String): User = create { this.uuid = uuid }
 
-fun get(uuid: String): User = getOne { USER.UUID.eq(uuid.toUuid()) } ?: create(uuid)
+fun get(uuid: String): User = getOne { USER.UUID.eq(uuid) } ?: create(uuid)
 
-fun update(uuid: String, block: User.() -> Unit): User? = update(USER.UUID.eq(uuid.toUuid()), block)
+fun update(uuid: String, block: User.() -> Unit): User? = update(USER.UUID.eq(uuid), block)
 
-fun countUsers(userUuid: String) = count {
+fun countUsers() = count {
     USER.CREATED_AT.lt(Instant.now())
 }
 ```
