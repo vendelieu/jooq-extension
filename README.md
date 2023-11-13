@@ -2,7 +2,7 @@
 
 <br/>
 <p align="center">
-    <img src="https://github.com/vendelieu/telegram-bot/assets/0.1.0/a0.1.0-0.1.0d7a-8270-a0.1.0fe6c3" height="90" alt="jooq plugin extension logo" />
+    <img src="https://github.com/vendelieu/telegram-bot/assets/3987067/a96e2a39-60f2-4d7a-8270-a0c60d4fe6c3" height="90" alt="jooq plugin extension logo" />
 </p>
 
 [![Gradle Plugin](https://img.shields.io/gradle-plugin-portal/v/eu.vendeli.jooq.extension?label=Gradle&logo=gradle)](https://plugins.gradle.org/plugin/eu.vendeli.jooq.extension)
@@ -31,27 +31,27 @@ Below are basic examples of extended dao functions:
 
 ```kotlin
     fun getUserDocument(id: Long, userId: Long) = getOne {
-        DOCUMENT.ID.eq(id).and(DOCUMENT.USER_ID.eq(userId))
-    }
+    DOCUMENT.ID.eq(id).and(DOCUMENT.USER_ID.eq(userId))
+}
 
-    fun getAllUserDocuments(userId: Long) = getAll {
-        DOCUMENT.USER_ID.eq(userId)
-    }
+fun getAllUserDocuments(userId: Long) = getAll {
+    DOCUMENT.USER_ID.eq(userId)
+}
 
-    fun create(uuid: String): User = create { this.uuid = uuid.toUuid() }
+fun create(uuid: String): User = create { this.uuid = uuid.toUuid() }
 
-    fun get(uuid: String): User = getOne { USER.UUID.eq(uuid.toUuid()) } ?: create(uuid)
+fun get(uuid: String): User = getOne { USER.UUID.eq(uuid.toUuid()) } ?: create(uuid)
 
-    fun update(uuid: String, block: User.() -> Unit): User? = update(USER.UUID.eq(uuid.toUuid()), block)
+fun update(uuid: String, block: User.() -> Unit): User? = update(USER.UUID.eq(uuid.toUuid()), block)
 
-    fun countUsers(userUuid: String) = count {
-        USER.CREATED_AT.lt(Instant.now())
-    }
+fun countUsers(userUuid: String) = count {
+    USER.CREATED_AT.lt(Instant.now())
+}
 ```
 
 ### Configuring the Plugin
 
-The plugin can be configured using the `jooq` extension. 
+The plugin can be configured using the `jooq` extension.
 
 You need to set as provided custom generator and some
 generation flags to make it work well.
