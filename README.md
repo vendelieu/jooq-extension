@@ -30,8 +30,8 @@ plugins {
 Below are basic examples of extended dao functions:
 
 ```kotlin
-    fun getUserDocument(id: Long, userId: Long) = getOne {
-    DOCUMENT.ID.eq(id).and(DOCUMENT.USER_ID.eq(userId))
+fun getUserDocument(id: Long, userId: Long) = getOne {
+DOCUMENT.ID.eq(id).and(DOCUMENT.USER_ID.eq(userId))
 }
 
 fun getAllUserDocuments(userId: Long) = getAll {
