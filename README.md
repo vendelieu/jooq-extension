@@ -9,7 +9,7 @@
 
 ## Introduction
 
-This repository contains a Gradle plugin that integrates a custom jOOQ generator.
+This repository contains a Gradle plugin that integrates a custom jOOQ generator for usage in Spring environment.
 
 The custom generator extends the functionality of jOOQ generated DAOs (Data Access Objects) with helpful functions.
 
