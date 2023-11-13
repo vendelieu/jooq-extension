@@ -21,7 +21,7 @@ To apply the plugin to your project, add the following to your `build.gradle.kts
 
 ```kotlin
 plugins {
-    id("eu.vendeli.jooq.extension") version "0.1.0"
+    id("eu.vendeli.jooq.extension") version "0.0.0"
 }
 ```
 
