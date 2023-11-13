@@ -1,8 +1,8 @@
-[version]: 0.0.1
+[version]: 0.1.0
 
 <br/>
 <p align="center">
-    <img src="https://github.com/vendelieu/telegram-bot/assets/3987067/a96e2a39-60f2-4d7a-8270-a0c60d4fe6c3" height="90" alt="jooq plugin extension logo" />
+    <img src="https://github.com/vendelieu/telegram-bot/assets/0.1.0/a0.1.0-0.1.0d7a-8270-a0.1.0fe6c3" height="90" alt="jooq plugin extension logo" />
 </p>
 
 [![Gradle Plugin](https://img.shields.io/gradle-plugin-portal/v/eu.vendeli.jooq.extension?label=Gradle&logo=gradle)](https://plugins.gradle.org/plugin/eu.vendeli.jooq.extension)
@@ -21,7 +21,7 @@ To apply the plugin to your project, add the following to your `build.gradle.kts
 
 ```kotlin
 plugins {
-    id("eu.vendeli.jooq.extension") version "0.0.0"
+    id("eu.vendeli.jooq.extension") version "0.1.0"
 }
 ```
 
