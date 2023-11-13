@@ -21,8 +21,7 @@ jobs:
   readme:
     name: Replace version in README.md
     runs-on: ubuntu-22.04
-    permissions:
-      contents: write
+    permissions: write-all
     steps:
       - uses: actions/checkout@v3
       - uses: jacobtomlinson/gha-find-replace@v3
