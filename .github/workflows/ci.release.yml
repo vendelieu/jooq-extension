@@ -37,7 +37,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update plugin version.
-          skip_dirty_check: true
+          branch: master
 
   release-build:
     runs-on: ubuntu-22.04
