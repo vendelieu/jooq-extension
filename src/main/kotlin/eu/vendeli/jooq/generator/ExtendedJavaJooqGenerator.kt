@@ -16,27 +16,29 @@ class ExtendedJavaJooqGenerator : JavaGenerator() {
         super.generateDao(table)
 
         val file = getFile(table, GeneratorStrategy.Mode.DAO)
-        if (file.exists()) try {
-            var fileContent = String(file.readBytes())
+        if (file.exists()) {
+            try {
+                var fileContent = String(file.readBytes())
 
-            val oldExtends = " extends " + DAOImpl::class.java.getSimpleName()
-            val newExtends = " extends eu.vendeli.jooq.impl.DAOExtendedImpl"
-            fileContent = fileContent.replace(
-                "import org.jooq.impl.DAOImpl;\n",
-                "import eu.vendeli.jooq.impl.DAOExtendedImpl;\n" +
-                        "import org.jooq.DSLContext;\n",
-            )
-            fileContent = fileContent.replace(oldExtends, newExtends)
+                val oldExtends = " extends " + DAOImpl::class.java.getSimpleName()
+                val newExtends = " extends eu.vendeli.jooq.impl.DAOExtendedImpl"
+                fileContent = fileContent.replace(
+                    "import org.jooq.impl.DAOImpl;\n",
+                    "import eu.vendeli.jooq.impl.DAOExtendedImpl;\n" +
+                        "import org.jooq.DSLContext;\n"
+                )
+                fileContent = fileContent.replace(oldExtends, newExtends)
 
-            if (generateSpringAnnotations()) {
-                val dslContextSetting =
-                    "> {\n\t@Autowired\n\tvoid dslCtxSetter(DSLContext ctx) {\n\t\tsuper.setDslContext(ctx);\n\t}"
-                fileContent = fileContent.replace("> {", dslContextSetting)
+                if (generateSpringAnnotations()) {
+                    val dslContextSetting =
+                        "> {\n\t@Autowired\n\tvoid dslCtxSetter(DSLContext ctx) {\n\t\tsuper.setDslContext(ctx);\n\t}"
+                    fileContent = fileContent.replace("> {", dslContextSetting)
+                }
+
+                file.writeBytes(fileContent.toByteArray())
+            } catch (e: IOException) {
+                logger.error("generateDao error: {}", file.absolutePath, e)
             }
-
-            file.writeBytes(fileContent.toByteArray())
-        } catch (e: IOException) {
-            logger.error("generateDao error: {}", file.absolutePath, e)
         }
         copyDaoExtdImpl()
     }

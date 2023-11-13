@@ -1,12 +1,16 @@
 [versions]
 jooq = "3.18.7"
 kotlin = "1.9.20"
+ktlint = "11.6.1"
+detekt = "1.23.3"
 gradle-publish = "1.2.1"
 
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish"}
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
 
 [libraries]
 jooq-codegen = { module = "org.jooq:jooq-codegen", version.ref = "jooq" }

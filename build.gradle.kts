@@ -1,4 +1,6 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 val javaVersion = JavaVersion.VERSION_11
 
@@ -6,6 +8,8 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.gradle.publish)
     `java-gradle-plugin`
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.ktlint)
 }
 
 group = "eu.vendeli"
@@ -46,10 +50,25 @@ java {
     targetCompatibility = javaVersion
 }
 
-
 tasks {
     withType<Wrapper> {
         distributionType = Wrapper.DistributionType.ALL
+    }
+
+    withType<Detekt> {
+        config = rootProject.files("config/detekt.yml")
+    }
+    configure<KtlintExtension> {
+        debug.set(false)
+        verbose.set(true)
+        android.set(false)
+        outputToConsole.set(true)
+        ignoreFailures.set(false)
+        enableExperimentalRules.set(true)
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
+        }
     }
 
     withType<KotlinCompile> {

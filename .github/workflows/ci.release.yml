@@ -3,7 +3,7 @@ name: "Release pipeline"
 on:
   push:
     tags:
-      - '*.*.*'
+      - 'v*.*.*'
 
 jobs:
   version:
@@ -17,6 +17,18 @@ jobs:
         # extract tag name without v prefix
         run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
         shell: bash
+
+  readme:
+    name: Replace version in README.md
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "*.*.*"
+          replace: "${{ needs.version.outputs.version }}"
+          regex: true
+          include: "./README.md"
 
   release-build:
     runs-on: ubuntu-22.04
