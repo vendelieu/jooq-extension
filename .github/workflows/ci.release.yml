@@ -25,7 +25,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "[0-9]+.[0-9]+.[0-9]+"
@@ -33,6 +35,8 @@ jobs:
           include: "**README.md"
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update plugin version.
 
   release-build:
     runs-on: ubuntu-22.04
