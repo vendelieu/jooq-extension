@@ -49,6 +49,8 @@ fun countUsers() = count {
 }
 ```
 
+The generator adds basic CRUD operations tied to table identifier or to passed conditions, also in dao there is access to `dslContext` for further extension through inheritance.
+
 ### Configuring the Plugin
 
 The plugin can be configured using the `jooq` extension.
