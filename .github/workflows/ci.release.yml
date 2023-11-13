@@ -19,6 +19,7 @@ jobs:
         shell: bash
 
   readme:
+    needs: version
     name: Replace version in README.md
     runs-on: ubuntu-22.04
     permissions:
@@ -35,7 +36,7 @@ jobs:
 
   release-build:
     runs-on: ubuntu-22.04
-    needs: version
+    needs: readme
     steps:
       - name: git clone
         uses: actions/checkout@v3.4.0
