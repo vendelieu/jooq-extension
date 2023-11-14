@@ -45,7 +45,7 @@ fun get(uuid: String): User = getOne { USER.UUID.eq(uuid) } ?: create(uuid)
 fun update(uuid: String, block: User.() -> Unit): User? = update(USER.UUID.eq(uuid), block)
 
 fun countUsers() = count {
-    USER.CREATED_AT.gt(Instant.now().minus(1.day))
+    USER.CREATED_AT.gt(Instant.now().minus(1.days))
 }
 ```
 
