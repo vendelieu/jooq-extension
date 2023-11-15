@@ -4,7 +4,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class JooqExtensionPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        println("You can set ExtendedJavaJooqGenerator as your JOOQ custom generator.")
-    }
+    @Suppress("EmptyFunctionBlock")
+    override fun apply(target: Project) {}
 }

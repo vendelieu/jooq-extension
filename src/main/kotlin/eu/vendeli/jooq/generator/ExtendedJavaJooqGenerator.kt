@@ -24,14 +24,14 @@ class ExtendedJavaJooqGenerator : JavaGenerator() {
                 val newExtends = " extends eu.vendeli.jooq.impl.DAOExtendedImpl"
                 fileContent = fileContent.replace(
                     "import org.jooq.impl.DAOImpl;\n",
-                    "import eu.vendeli.jooq.impl.DAOExtendedImpl;\n" +
-                        "import org.jooq.DSLContext;\n"
+                    "import eu.vendeli.jooq.impl.DAOExtendedImpl;\nimport org.jooq.DSLContext;\n",
                 )
                 fileContent = fileContent.replace(oldExtends, newExtends)
 
                 if (generateSpringAnnotations()) {
                     val dslContextSetting =
-                        "> {\n\t@Autowired\n\tvoid dslCtxSetter(DSLContext ctx) {\n\t\tsuper.setDslContext(ctx);\n\t}"
+                        "> {\n\t@Autowired\n\tvoid setCfg(Configuration configuration) {\n\t\t" +
+                            "super.setConfiguration(configuration);\n\t}"
                     fileContent = fileContent.replace("> {", dslContextSetting)
                 }
 

@@ -11,7 +11,8 @@ abstract class DAOExtendedImpl<Record : UpdatableRecord<Record>, Pojo, Id> prote
         super.setConfiguration(configuration)
     }
 
-    protected open var dslContext: DSLContext = super.ctx()
+    @Suppress("MemberVisibilityCanBePrivate")
+    protected val dslContext: DSLContext get() = super.ctx()
 
     private fun <T : Record> mapRecord(block: () -> Record?): Pojo? = mapper().map(block())
 
