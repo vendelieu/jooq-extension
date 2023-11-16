@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: git clone
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.6.0
       - name: Set up JDKs
         uses: actions/setup-java@v3.13.0
         with:
