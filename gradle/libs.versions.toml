@@ -2,7 +2,7 @@
 jooq = "3.18.7"
 kotlin = "1.9.21"
 ktlint = "11.6.1"
-detekt = "1.23.3"
+detekt = "1.23.4"
 gradle-publish = "1.2.1"
 
 
