@@ -2,7 +2,9 @@ name: "PR Pipeline"
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
+    - 'renovate/**'
   pull_request:
     branches: [ master ]
   workflow_dispatch:
