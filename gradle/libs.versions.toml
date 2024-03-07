@@ -1,6 +1,6 @@
 [versions]
 jooq = "3.19.5"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 ktlint = "11.6.1"
 detekt = "1.23.5"
 gradle-publish = "1.2.1"
