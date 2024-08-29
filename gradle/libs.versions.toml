@@ -3,7 +3,7 @@ jooq = "3.19.11"
 kotlin = "2.0.20"
 ktlint = "11.6.1"
 detekt = "1.23.6"
-gradle-publish = "1.2.1"
+gradle-publish = "1.2.2"
 
 
 [plugins]
