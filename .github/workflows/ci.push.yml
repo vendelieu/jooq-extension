@@ -22,5 +22,5 @@ jobs:
             8
             11
       - name: Set up Gradle
-        uses: gradle/gradle-build-action@v3.5.0
+        uses: gradle/actions/setup-gradle@v4
       - run: "./gradlew :test"
