@@ -1,18 +1,20 @@
 rootProject.name = "jooq-extension"
 
 plugins {
-    id("com.gradle.enterprise") version "3.18.1"
+    id("com.gradle.develocity") version "3.18.1"
 }
 
 dependencyResolutionManagement {
-    repositories.gradlePluginPortal()
-    repositories.google()
+    @Suppress("UnstableApiUsage")
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
 }
 
-gradleEnterprise {
+develocity {
     buildScan {
-        publishAlways()
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
+        termsOfUseUrl = "https://gradle.com/terms-of-service"
+        termsOfUseAgree = "yes"
     }
 }

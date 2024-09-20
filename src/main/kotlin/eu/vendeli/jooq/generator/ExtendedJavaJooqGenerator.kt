@@ -28,18 +28,21 @@ class ExtendedJavaJooqGenerator : JavaGenerator() {
             try {
                 var fileContent = file.readBytes().toString(Charsets.UTF_8)
 
-                fileContent = fileContent.replace(
-                    "import org.jooq.impl.DAOImpl;\n",
-                    "import org.springframework.beans.factory.annotation.Autowired;\n",
-                )
-                fileContent = fileContent.replace(
-                    " extends " + DAOImpl::class.java.getSimpleName(),
-                    " extends eu.vendeli.jooq.impl.DAOExtendedImpl",
-                )
+                fileContent =
+                    fileContent.replace(
+                        "import org.jooq.impl.DAOImpl;\n",
+                        "import org.springframework.beans.factory.annotation.Autowired;\n",
+                    )
+                fileContent =
+                    fileContent.replace(
+                        " extends " + DAOImpl::class.java.getSimpleName(),
+                        " extends eu.vendeli.jooq.impl.DAOExtendedImpl",
+                    )
 
                 if (generateSpringAnnotations()) {
-                    val dslContextSetting = "> {\n\t@Autowired\n\tvoid setCfg(Configuration configuration) {\n\t\t" +
-                        "super.setConfiguration(configuration);\n\t}"
+                    val dslContextSetting =
+                        "> {\n\t@Autowired\n\tvoid setCfg(Configuration configuration) {\n\t\t" +
+                            "super.setConfiguration(configuration);\n\t}"
                     fileContent = fileContent.replace("> {", dslContextSetting)
                 }
 
