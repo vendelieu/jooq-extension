@@ -7,7 +7,7 @@ abstract class DAOExtendedImpl<Record : UpdatableRecord<Record>, Pojo, Id> prote
     table: Table<Record>,
     type: Class<Pojo>
 ) : DAOImpl<Record, Pojo, Id>(table, type) {
-    protected constructor(table: Table<Record>, type: Class<Pojo>, configuration: Configuration) : this(table, type) {
+    protected constructor(table: Table<Record>, type: Class<Pojo>, configuration: Configuration?) : this(table, type) {
         super.setConfiguration(configuration)
     }
 

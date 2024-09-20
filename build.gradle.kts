@@ -1,4 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
@@ -24,6 +25,7 @@ gradlePlugin {
             id = "eu.vendeli.jooq.extension"
             displayName = "Jooq Extension Gradle Plugin"
             description = "Gradle plugin that extends functionality of the JOOQ."
+            @Suppress("UnstableApiUsage")
             tags.set(listOf("kotlin", "spring-boot", "jooq"))
             implementationClass = "eu.vendeli.jooq.JooqExtensionPlugin"
         }
@@ -31,7 +33,7 @@ gradlePlugin {
 }
 
 configurations.compileClasspath {
-    // Allow Java 11 dependencies on compile classpath
+    // Allow Java 11 dependencies on compiler classpath
     attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 11)
 }
 
@@ -72,9 +74,9 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions {
+        compilerOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = javaVersion.majorVersion
+            jvmTarget.set(JvmTarget.fromTarget(javaVersion.majorVersion))
         }
     }
 }
