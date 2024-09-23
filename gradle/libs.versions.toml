@@ -1,5 +1,5 @@
 [versions]
-jooq = "3.19.11"
+jooq = "3.19.12"
 kotlin = "2.0.20"
 ktlint = "12.1.1"
 detekt = "1.23.7"
