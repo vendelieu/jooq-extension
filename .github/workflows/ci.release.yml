@@ -8,7 +8,7 @@ on:
 jobs:
   version:
     name: Get version number from tag
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     outputs:
       version: ${{ steps.vars.outputs.version }}
     steps:
@@ -21,7 +21,7 @@ jobs:
   publish:
     needs: version
     name: Publish artifact to Gradle Plugins portal
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: git clone
         uses: actions/checkout@v4.2.0
@@ -40,7 +40,7 @@ jobs:
   readme:
     needs: [ version, publish ]
     name: Replace version in README.md
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
